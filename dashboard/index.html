@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="mark" aria-hidden="true">◈</div>
+    <div>
+      <h1>TOKEN RADAR</h1>
+      <p class="tagline">Pre-token protocols, ranked by what their launch would be worth.</p>
+    </div>
+  </div>
+  <div class="chips" id="chips"></div>
+</header>
+
+<main>
+  <section class="card method">
+    <h2>How the board is built</h2>
+    <p id="method-text"></p>
+    <p class="muted" id="source-line"></p>
+  </section>
+
+  <section class="card controls" aria-label="Filter and sort the board">
+    <label>Search <input id="q" type="search" placeholder="Protocol name or slug" autocomplete="off"></label>
+    <label>Category <select id="cat"><option value="">All categories</option></select></label>
+    <label>Chain <select id="chain"><option value="">All chains</option></select></label>
+    <label class="check"><input id="watch" type="checkbox"> Watchlist only</label>
+    <label>Sort by
+      <select id="sort">
+        <option value="implied">Implied value</option>
+        <option value="tvl">TVL</option>
+        <option value="growth">7-day change</option>
+        <option value="age">Age</option>
+      </select>
+    </label>
+  </section>
+
+  <section class="card">
+    <div class="section-head">
+      <h2>The board</h2>
+      <p class="count" id="count"></p>
+    </div>
+    <div class="tablewrap">
+      <table id="board">
+        <thead>
+          <tr>
+            <th class="num">Rank</th>
+            <th>Protocol</th>
+            <th>Category</th>
+            <th>Chains</th>
+            <th class="num">TVL</th>
+            <th class="num">7d</th>
+            <th class="num">Age</th>
+            <th class="num">Implied value</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="hint">Click a row for its detail view and farm plan.</p>
+  </section>
+
+  <section class="card detail" id="detail" hidden></section>
+
+  <section class="card">
+    <div class="section-head">
+      <h2>Live tokens — already trading</h2>
+      <p class="count" id="live-count"></p>
+    </div>
+    <p class="muted">These protocols already have a token, so the board shows the market's own value for them, never a model's. They are set aside, not ranked.</p>
+    <div class="tablewrap">
+      <table id="live">
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>Category</th>
+            <th>Chains</th>
+            <th class="num">TVL</th>
+            <th class="num">Market cap</th>
+            <th class="num">7d</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card sandbox">
+    <div class="section-head">
+      <h2>Model sandbox</h2>
+      <p class="count">Try the model's constants — the page re-ranks live.</p>
+    </div>
+    <p class="muted">Changing these only re-ranks this page. The submitted board is fixed; its constants are the ones in the method above.</p>
+    <div class="sliders" id="sliders"></div>
+    <div class="sandbox-actions">
+      <button id="apply-sandbox" type="button">Apply to the board</button>
+      <button id="reset-sandbox" type="button">Reset to the submitted model</button>
+    </div>
+    <p class="muted" id="sandbox-note"></p>
+  </section>
+
+  <footer class="foot">
+    <p>An implied value is this entry's own claim from the snapshot's figures. It is not a prediction that a token will be issued, or when. A protocol on the board records no token in DefiLlama's record; that is not proof it has none. Farming a protocol costs gas and carries smart-contract risk: never pay anyone to claim an airdrop.</p>
+    <p class="muted">Token Radar, model radar-2. Data: a sealed DefiLlama snapshot. No network is used by this page.</p>
+  </footer>
+</main>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
